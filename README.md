@@ -1,17 +1,3 @@
-# Foodgram
-
-![workflow](https://github.com/Xewus/Foodgram/actions/workflows/main.yml/badge.svg)
-
-***
-Господа, раз уж скачиваете (собственно, для этого оно и открыто) справа вверху можно тыкнуть :star: .  
-:warning: В `docker-compose.yml` в настройках для `nginx` вам нужно будет сменить порт :eight::zero::zero::one: на :eight::zero:.
-
-У меня так настроено, потому что на одном сервере и IP висит несколько сайтов.
-
-Кроме того, раз Яндекс за 3 года не сподобился придумать новый проект, претензии ревьюеров, для улучшения проекта, можно записывать сюда: [Вопросы](https://github.com/Xewus/foodgram-project-react/issues).
-
-Имейте ввиду, что некоторые ревьюры сами не сильно углублялись в предмет, проверку проводят сравнивая с выданным им шаблоном и иногда их претензии решаются не переписыванием кода, а объяснением Вашего решения. Не стесняйтесь спорить с ними. 
-***
 
 ## Tecnhologies
 
@@ -22,107 +8,91 @@
 - Docker
 - Postgres
 
-## https://foodgram.gq
 
-*С самого начала развёрнут в облачном сервисе [CLO](https://lk.clo.ru/sign/up/?ref_id=1113625)*
 
-Here you can share recipes of dishes, add them to favorites and display a shopping list for cooking your favorite dishes.
-To preserve order - only administrators are allowed to create tags and ingredients.
-
-There is also an API. To view the available paths, follow the link: **https://foodgram.gq/api/**.
-
-And the api documentation is here: **https://foodgram.gq/api/docs/**.
-
-### To deploy this project need the next actions
-
-- Download project with SSH (actually you only need the folder 'infra/')
+Конечно, вот перевод всего текста на русский язык:
 
 ```text
-git clone git@github.com:Xewus/foodgram-project-react.git
+git clone git@ithub.com/Gordenator/foodgram
 ```
 
-- Connect to your server:
+- Подключитесь к вашему серверу:
 
 ```text
-ssh <server user>@<server IP>
+ssh <пользователь сервера>@<IP-адрес сервера>
 ```
 
-- Install Docker on your server
+- Установите Docker на вашем сервере
 
 ```text
 sudo apt install docker.io
 ```
 
-- Install Docker Compose (for Linux)
+- Установите Docker Compose (для Linux)
 
 ```text
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-- Get permissions for docker-compose
+- Получите права для docker-compose
 
 ```text
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-- Create project directory (preferably in your home directory)
+- Создайте директорию проекта (желательно в вашей домашней директории)
 
 ```text
 mkdir foodgram && cd foodgram/
 ```
 
-- Create env-file:
+- Создайте env-файл:
 
 ```text
 touch .env
 ```
 
-- Fill in the env-file like it:
+- Заполните env-файл следующим образом:
 
 ```text
 DEBUG=False
-SECRET_KEY=<Your_some_long_string>
-ALLOWED_HOSTS=<Your_host>
-CSRF_TRUSTED_ORIGINS=https://<Your_host>
+SECRET_KEY=<Ваша_какая-нибудь_длинная_строка>
+ALLOWED_HOSTS=<Ваш_хост>
+CSRF_TRUSTED_ORIGINS=https://<Ваш_хост>
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=postgres
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=<Your_password>
+POSTGRES_PASSWORD=<Ваш_пароль>
 DB_HOST=foodgram-db
 DB_PORT=5432
 ```
 
-- Copy files from 'infra/' (on your local machine) to your server:
+- Скопируйте файлы из 'infra/' (на вашей локальной машине) на ваш сервер:
 
 ```text
-scp -r infra/* <server user>@<server IP>:/home/<server user>/foodgram/
+scp -r infra/* <пользователь сервера>@<IP-адрес сервера>:/home/<пользователь сервера>/foodgram/
 ```
 
-- Run docker-compose
+- Запустите docker-compose
 
 ```text
 sudo docker-compose up -d
 ```
 
-Wait a few seconds...
-Your service is work!
-![Иллюстрация к проекту](https://github.com/Xewus/Foodgram/blob/master/screen.png)
+Подождите несколько секунд...
+Ваш сервис работает!
 
-**Enjoy your meal!**
+**Приятного аппетита!**
 
-Oh, I'm sorry. You also need to create the first account for the admin panel using this command:
 
 ```text
 sudo docker exec -it foodgram-app python manage.py createsuperuser
 ```
 
-And if you want, you can use the list of ingredients offered by us to write recipes.
-Upload it to the database with the following command:
+И если хотите, вы можете использовать список ингредиентов, предложенный нами, для написания рецептов.
+Загрузите его в базу данных с помощью следующей команды:
 
 ```text
 sudo docker exec -it foodgram-app python manage.py loaddata data/dump.json
 ```
 
-### *Backend by:*
-
-[Xewus](https://github.com/Xewus)
