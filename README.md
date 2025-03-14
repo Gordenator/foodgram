@@ -10,8 +10,6 @@
 
 
 
-Конечно, вот перевод всего текста на русский язык:
-
 ```text
 git clone git@ithub.com/Gordenator/foodgram
 ```
